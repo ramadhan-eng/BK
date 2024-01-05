@@ -6,7 +6,7 @@ class Riwayat extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('riwayat_model'); // Load the model in the constructor
+        $this->load->model('dokter/riwayat_model'); // Load the model in the constructor
     }
 
     public function index()

@@ -143,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                 </div>
                                 <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover text-nowrap">
+                                    <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -169,8 +169,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
-                                        <tbody>
-                                        </tbody>
                                         </tbody>
                                     </table>
                                 </div>

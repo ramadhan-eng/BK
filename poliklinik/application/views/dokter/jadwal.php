@@ -37,6 +37,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Tambah Data Obat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add your form here -->
+                    <form method="post" action="<?= base_url('dokter/jadwal/tambah'); ?>">
+                        <div class="form-group">
+                            <label for="hari">Hari</label>
+                            <input type="text" class="form-control" id="hari" name="hari" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selesai">Jam Mulai</label>
+                            <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jam_selesai">Jam Selesai</label>
+                            <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
+                        </div>
+                        <!-- Add other form fields as needed -->
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">

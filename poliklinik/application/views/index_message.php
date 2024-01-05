@@ -9,7 +9,7 @@
 
 <body>
     <a href="<?= base_url('login') ?>">Adminin/Doctor</a>
-    <a href="">Pasien</a>
+    <a href="<?= base_url('pasien/login') ?>">Pasien</a>
 </body>
 
 </html>

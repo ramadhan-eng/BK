@@ -3,7 +3,7 @@
     <a href="admin" class="brand-link">
         <img src="<?= base_url('asset/') ?>AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">PoliklinikBK</span>
+        <span class="brand-text font-weight-light">AdminLTE</span>
     </a>
 
     <!-- Sidebar -->
@@ -26,27 +26,9 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= base_url('dokter/dokter') ?>" class="nav-link">
+                    <a href="admin" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Periksa Pasien</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('dokter/jadwal') ?>" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Jadwal Periksa</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('dokter/riwayat') ?>" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Riwayat Pasien</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="doctor" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Doctor</p>
+                        <p>Poli</p>
                     </a>
                 </li>
             </ul>

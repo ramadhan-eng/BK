@@ -12,13 +12,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet"
+        href="<?= base_url('asset/') ?>AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -26,7 +28,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet"
+        href="<?= base_url('asset/') ?>AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url('asset/') ?>AdminLTE/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
@@ -67,25 +70,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <table class="table table-hover text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal Periksa</th>
-                                                <th>Nomor RM</th>
+                                                <th>No</th>
                                                 <th>Nama Pasien</th>
-                                                <th>Catatan</th>
-                                                <th>Nama Obat</th>
-                                                <th>Total Biaya</th>
+                                                <th>Alamat</th>
+                                                <th>No KTP</th>
+                                                <th>No Hp</th>
+                                                <th>No RM</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($riwayat_periksa as $row) : ?>
-                                                <tr>
-                                                    <td><?php echo $row->tgl_periksa; ?></td>
-                                                    <td><?php echo $row->no_rm; ?></td>
-                                                    <td><?php echo $row->nama_pasien; ?></td>
-                                                    <td><?php echo $row->catatan; ?></td>
-                                                    <td><?php echo $row->nama_obat; ?></td>
-                                                    <td><?php echo $row->total; ?></td>
-
-                                                </tr>
+                                            <?php foreach ($riwayat_periksa as $key => $pasien) : ?>
+                                            <tr>
+                                                <td><?= $key + 1 ?></td>
+                                                <td><?= $pasien['nama'] ?></td>
+                                                <td><?= $pasien['alamat'] ?></td>
+                                                <td><?= $pasien['no_ktp'] ?></td>
+                                                <td><?= $pasien['no_hp'] ?></td>
+                                                <td><?= $pasien['no_rm'] ?></td>
+                                                <!-- Add your action buttons or links here if needed -->
+                                                <td>
+                                                    <button type='button' class='btn btn-sm btn-warning edit-btn'>Detail
+                                                        Periksa</button>
+                                                </td>
+                                            </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>

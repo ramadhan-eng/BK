@@ -6,7 +6,7 @@ class Dokter extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('periksa_model'); // Load the model in the constructor
+        $this->load->model('dokter/periksa_model'); // Load the model in the constructor
     }
 
     public function index()
