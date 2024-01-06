@@ -1,9 +1,0 @@
-i get 
-table poli coloum id(PK),nama_poli,keterangan
-table dokter coloum id(PK),nama,alamat,no_hp,id_poli(FK from table poli id)
-table jadwal_periksa id(PK),id_dokter(FK from table dokter id),hari,jam_mulai,jam_selesai
-table daftar_poli coloum id(PK),id_pasien(FK table pasien id),id_jadwal(FK table jadwal_periksa id),keluhan,antri
-table pasien id(PK),nama,alamat,no_ktp,no_hp,no_rm
-table detail_periksa coloum id(PK),id_periksa(FK from table periksa id),id_obat(FK from table obat id)
-table obat coloum id(PK),nama_obat,kemasan,harga
-table periksa coloum id(PK),id_daftar_poli(FK from table daftar poli id),tgl_periksa,catatan,biaya_periksa
