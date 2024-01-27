@@ -1,0 +1,100 @@
+<table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>ID Dokter</th>
+                                                <th>Hari</th>
+                                                <th>Jam Mulai</th>
+                                                <th>Jam Selesai</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($jadwal_periksa as $jadwal) : ?>
+                                            <tr>
+                                                <td><?= $jadwal['id']; ?></td>
+                                                <td><?= $jadwal['id_dokter']; ?></td>
+                                                <td><?= $jadwal['hari']; ?></td>
+                                                <td><?= $jadwal['jam_mulai']; ?></td>
+                                                <td><?= $jadwal['jam_selesai']; ?></td>
+                                                <td>
+                                                <button type='button' class='btn btn-sm btn-success '
+                                                        >Aktif</button>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        <tbody>
+                                        </tbody>
+                                        </tbody>
+                                    </table>
+
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Jadwal_model extends CI_Model
+{
+    public function SemuaData()
+    {
+        return $this->db->get('jadwal_periksa')->result_array();
+    }
+
+    public function tambah_data($data)
+    {
+        $query = $this->db->query('SELECT MAX(id) AS max_id FROM jadwal_periksa');
+        $row = $query->row();
+        $max_id = $row->max_id;
+
+        // Increment the id for the new record
+        $data['id'] = $max_id + 1;
+
+        // Insert the new record into the obat table
+        $this->db->insert('jadwal_periksa', $data);
+
+        // Return the ID of the inserted row
+        return $this->db->insert_id();
+    }
+}
+
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Jadwal extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('dokter/jadwal_model'); // Load the model in the constructor
+    }
+
+    public function index()
+    {
+        $data['jadwal_periksa'] = $this->jadwal_model->SemuaData();
+        $this->load->view('dokter/navbar');
+        $this->load->view('dokter/jadwal', $data);
+        $this->load->view('dokter/sidebar');
+    }
+
+    public function tambah()
+    {
+        // Assuming you have a form submitting POST data
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = array(
+                'id_dokter' => $this->input->post('dokter_id'),
+                'hari' => $this->input->post('hari'),
+                'jam_mulai' => $this->input->post('jam_mulai'),
+                'jam_selesai' => $this->input->post('jam_mulai'),
+                'status' => $this->input->post('status')
+                // Add other fields as needed
+            );
+
+            // Call the model to add data
+            $this->jadwal_model->tambah_data($data);
+
+            // Redirect or show success message
+            redirect('dokter/jadwal');
+        } else {
+            // Display the form
+            $this->load->view('form_tambah');
+        }
+    }
+}
