@@ -10,32 +10,6 @@
     <?php endif; ?>
 </td>
 
-<script>
-    $(document).ready(function () {
-        $('.toggle-status').on('click', function () {
-            var jadwalId = $(this).data('id');
-
-            // Send AJAX request to update status
-            $.ajax({
-                url: '<?php echo base_url("dokter/jadwal/toggle_status"); ?>',
-                type: 'POST',
-                data: { id: jadwalId },
-                success: function (response) {
-                    // Toggle button text and class based on the new status
-                    var newStatus = response.status;
-                    var buttonText = (newStatus == '1') ? 'Aktif' : 'Non-Aktif';
-                    var buttonClass = (newStatus == '1') ? 'btn-success' : 'btn-danger';
-
-                    $(this).text(buttonText).removeClass('btn-success btn-danger').addClass(buttonClass);
-
-                }.bind(this),
-                error: function (error) {
-                    console.error('Error updating status:', error);
-                }
-            });
-        });
-    });
-</script>
 
 public function toggle_status()
     {
@@ -55,3 +29,33 @@ public function toggle_status()
             show_404(); // Handle non-AJAX requests accordingly
         }
     }
+
+<script>
+    $(document).ready(function () {
+        $('.btn-toggle-status').on('click', function () {
+            var jadwalId = $(this).data('id');
+
+            // Send AJAX request to toggle status
+            $.ajax({
+                url: '<?php echo base_url("dokter/jadwal/toggle_status"); ?>',
+                type: 'POST',
+                data: { id: jadwalId },
+                success: function (response) {
+                    // Toggle button text based on the new status
+                    var newStatus = response.status;
+                    var buttonText = (newStatus == '1') ? 'Aktif' : 'Non-Aktif';
+
+                    // Update button text
+                    $(this).text(buttonText);
+
+                    // Update data-id attribute for future reference
+                    $(this).data('id', jadwalId);
+
+                }.bind(this),
+                error: function (error) {
+                    console.error('Error toggling status:', error);
+                }
+            });
+        });
+    });
+</script>
