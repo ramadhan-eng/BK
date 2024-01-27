@@ -1,0 +1,52 @@
+<button type='button' class='btn btn-sm btn-success toggle-status'
+        data-id="<?= $jadwal['id']; ?>"
+        <?= ($jadwal['status'] == 1) ? 'disabled' : ''; ?>>
+    <?= ($jadwal['status'] == 1) ? 'Active' : 'Inactive'; ?>
+</button>
+
+<script>
+    $(document).ready(function () {
+        // Handle button click
+        $('.toggle-status').on('click', function () {
+            var jadwalId = $(this).data('id');
+
+            // Send AJAX request to update status
+            $.ajax({
+                url: '<?php echo base_url("dokter/jadwal/toggle_status"); ?>',
+                type: 'POST',
+                data: { id: jadwalId },
+                success: function (response) {
+                    // Update button text and disabled state based on the new status
+                    var newStatus = response.status;
+                    var buttonText = (newStatus == 1) ? 'Active' : 'Inactive';
+
+                    $(this).text(buttonText).prop('disabled', (newStatus == 1));
+
+                }.bind(this), // Ensure the context is the button element
+                error: function (error) {
+                    console.error('Error updating status:', error);
+                }
+            });
+        });
+    });
+</script>
+
+
+public function toggle_status()
+{
+    if ($this->input->is_ajax_request()) {
+        $jadwalId = $this->input->post('id');
+
+        // Get the current status
+        $status = $this->db->get_where('jadwal_periksa', ['id' => $jadwalId])->row()->status;
+
+        // Toggle the status in the database
+        $newStatus = ($status == 1) ? 0 : 1;
+        $this->db->where('id', $jadwalId)->update('jadwal_periksa', ['status' => $newStatus]);
+
+        // Return the new status as JSON
+        echo json_encode(['status' => $newStatus]);
+    } else {
+        show_404(); // Handle non-AJAX requests accordingly
+    }
+}
